@@ -1,7 +1,12 @@
-const {ApolloServer } = require('apollo-server');
+const { ApolloServer } = require('apollo-server');
 const mongoose = require('mongoose');
-const typeDefs = require('./schemas/productSchema');
-const resolvers = require('./resolvers/productResolver');
+const ProductTypeDefs = require('./schemas/productSchema');
+const UserTypeDefs = require('./schemas/userSchema');
+const productResolvers = require('./resolvers/productResolver');
+const userResolvers = require('./resolvers/userResolver');
+
+const typeDefs = [ProductTypeDefs, UserTypeDefs];
+const resolvers = [productResolvers, userResolvers];
 
 const startServer = async () => {
   // Conectar a MongoDB

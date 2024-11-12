@@ -1,4 +1,3 @@
-// productService.js
 const facturapi = require('../apis/facturapi');
 const Product = require('../models/productModel');
 
