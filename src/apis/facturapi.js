@@ -1,12 +1,8 @@
-// a) Importa el paquete
+// facturapi.js
 const Facturapi = require('facturapi').default;
-// b) Crea una instancia del cliente, usando la llave secreta
-//    de la organización emisora (https://dashboard.facturapi.io/integration/apikeys)
 const facturapi = new Facturapi('sk_test_Qo9ANzd7bqnwjEJPeR4kQYdYNVgv3pyYB60M4Da2Vm');
-// c) Crea una factura
 
-
-async function createProduct(product){
+async function createProduct(product) {
     const facturapiProduct = {
         description: product.description,
         product_key: "50202306",
@@ -15,6 +11,17 @@ async function createProduct(product){
     return await facturapi.products.create(facturapiProduct);
 }
 
+async function deleteProduct(facturapiId) {
+    return await facturapi.products.del(facturapiId);
+}
 
+async function updateProduct(facturapiId, updatedProduct) {
+    const facturapiProduct = {
+        description: updatedProduct.description,
+        product_key: "50202306", // Puedes modificar este valor si se requiere otro
+        price: updatedProduct.price
+    };
+    return await facturapi.products.update(facturapiId, facturapiProduct);
+}
 
-module.exports = {createProduct}
+module.exports = { createProduct, deleteProduct, updateProduct };
